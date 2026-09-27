@@ -4,6 +4,7 @@ import pandas as pd
 from pathlib import Path
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
 
 # Instance FastAPI wajib bernama 'app'
 app = FastAPI()
@@ -11,10 +12,10 @@ app = FastAPI()
 # Tambahkan konfigurasikan CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Ganti "*" dengan domain Laravel Anda di produksi (misal: "https://domain-anda.com")
+    allow_origins=["http://127.0.0.1:8000/"],  # Ganti "*" dengan domain Laravel Anda di produksi (misal: "https://domain-anda.com")
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["http://127.0.0.1:8000/"],
+    allow_headers=["http://127.0.0.1:8000/"],
 )
 
 # Path absolut agar file .pkl selalu terdeteksi di Vercel
