@@ -8,6 +8,15 @@ from pydantic import BaseModel
 # Instance FastAPI wajib bernama 'app'
 app = FastAPI()
 
+# Tambahkan konfigurasikan CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Ganti "*" dengan domain Laravel Anda di produksi (misal: "https://domain-anda.com")
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Path absolut agar file .pkl selalu terdeteksi di Vercel
 BASE_DIR = Path(__file__).resolve().parent
 
